@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<!-- JSTL을 사용하기 위해서는 라이브러리를 로딩 해야 한다 -->
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,7 +14,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Clean Blog</title>
+    <title>My Blog</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -42,14 +47,23 @@
                     <span class="sr-only">Toggle navigation</span>
                     Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="index.html">Start Bootstrap</a>
+                
+                <c:if test="${not empty sessionScope.member}">
+                	<div class="navbar-brand">${sessionScope.member.id}님 반갑습니다.</div>
+                </c:if>
+                
+                 <c:if test="${empty sessionScope.member}">
+                	<a class="navbar-brand" href="index.jsp">Start Bootstrap</a>
+                </c:if>
+                
+                
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="index.html">Home</a>
+                        <a href="index.jsp">Home</a>
                     </li>
                     <li>
                         <a href="about.html">About</a>
@@ -58,7 +72,7 @@
                         <a href="post.html">Sample Post</a>
                     </li>
                     <li>
-                        <a href="contact.html">Contact</a>
+                        <a href="login.jsp">Login</a>
                     </li>
                 </ul>
             </div>
